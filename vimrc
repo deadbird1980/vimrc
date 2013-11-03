@@ -50,29 +50,58 @@ fun! SetupVAM()
     call vam#ActivateAddons([
                 \  'ack',
                 \  'align',
+                \  'AutoComplPop',
+                \  'AutoFold',
+                \  'bash-support',
+                \  'blackboard',
                 \  'buf_it',
+                \  'bufexplorer.zip',
                 \  'bundler%3207',
                 \  'closetag',
+                \  'ctrlp',
                 \  'Command-T',
                 \  'cucumber.zip',
                 \  'dbext',
+                \  'DetectIndent',
                 \  'endwise',
+                \  'EasyGrep',
+                \  'EasyMotion',
                 \  'fugitive',
+                \  'The_NERD_Commenter',
+                \  'FuzzyFinder',
+                \  'Gundo',
                 \  'git.zip',
+                \  'genutils',
+                \  'grep',
+                \  'Indent_Guides',
+                \  'jellybeans',
+                \  'L9',
+                \  'matchit.zip',
+                \  'molokai',
+                \  'mru',
+                \  'Rubytest',
                 \  'node',
                 \  'node.js',
                 \  'rake',
                 \  'rails',
+                \  'railscasts',
                 \  'searchfold',
+                \  'SearchHighlighting',
+                \  'shellasync',
                 \  'ShowMarks7',
                 \  'Solarized',
                 \  'SuperTab%1643',
                 \  'surround',
+                \  'Source_Explorer_SrcExpl',
                 \  'Tagbar',
                 \  'tagbar-phpctags',
                 \  'taglist',
                 \  'The_NERD_Commenter',
+                \  'The_NERD_tree',
+                \  'tern_for_vim',
                 \  'tlib',
+                \  'tslime',
+                \  'turbux',
                 \  'UltiSnips',
                 \  'unimpaired',
                 \  'vim-addon-mw-utils',
@@ -81,7 +110,15 @@ fun! SetupVAM()
                 \  'vim-indent-object',
                 \  'vim-javascript',
                 \  'vim-jst',
-                \  'vim-ruby'
+                \  'vim-ruby',
+                \  'vimspell',
+                \  'vimux',
+                \  'Syntastic',
+                \
+                \  'bclear',
+                \  'inkpot',
+                \  'tir_black',
+                \  'vividchalk'
                 \ ], {'auto_install' : 0})
 endfun
 call SetupVAM()
@@ -120,6 +157,9 @@ set nowrap
 " Tabs and trailing spaces
 " http://vimcasts.org/episodes/show-invisibles/
 set list listchars=tab:▸\ ,trail:·
+" Set mapleader
+let mapleader=","
+let g:mapleader=","
 nmap <leader>l :set list!<CR>
 
 " Searching
@@ -155,7 +195,7 @@ let g:CommandTMaxHeight=20
 map <Leader><Leader> :ZoomWin<CR>
 
 " CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+"map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 
 " Remember last location in file
 if has("autocmd")
@@ -247,7 +287,7 @@ let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 set modeline
 set modelines=10
 
-set relativenumber
+"set relativenumber
 
 " Automatically save before commands like :next and :make
 set autowrite
@@ -256,12 +296,12 @@ set autowrite
 "syntax enable
 set background=dark
 
-let g:solarized_termtrans=1
-colorscheme solarized
+"let g:solarized_termtrans=1
+colorscheme vividchalk
 
 " Directories for swp files
-"set backupdir=~/.vim/backup
-"set directory=~/.vim/backup
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 let macvim_hig_shift_movement = 1
@@ -629,3 +669,37 @@ endfunction
 if filereadable("vimrc.local")
     source vimrc.local
 endif
+
+" NERDTree setting
+nmap <silent> <leader>nt :NERDTree<cr>
+let NERDTreeIgnore=['\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
+
+" Most Recently Used (MRU)
+nmap <silent> <leader>r :MRU<cr>
+
+" FuzzyFinder setting
+nmap <leader>fb :FufBuffer<cr>
+nmap <leader>ff :FufFile<cr>
+nmap <leader>fd :FufDir<cr>
+nmap <leader>fa :FufBookmark<cr>
+
+
+map <silent> <leader>rc :tabe ~/.vim/vimrc<cr>
+map <leader>q :q<cr>
+
+" Prompt for a command to run
+map <leader>rp :VimuxPromptCommand<cr>
+
+" Run last command executed by RunVimTmuxCommand
+map <leader>l :VimuxRunLastCommand<cr>
+
+" Inspect runner pane
+map <leader>ri :VimuxInspectRunner<cr>
+
+" Close all other tmux panes in current window
+map <leader>rx :VimuxCloseRunner<cr>
+
+" Interrupt any command running in the runner pane
+map <leader>rs :VimuxInterruptRunner<cr>
+
